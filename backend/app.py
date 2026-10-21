@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Docker Compose Backend is running!"
+    return "Docker Compose Devops Lab is running!"
 
 @app.route("/health")
 def health():
