@@ -1,0 +1,27 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: compose-nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+  backend:
+    build: ./backend
+    container_name: compose-backend
+    environment:
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
+    container_name: compose-redis
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
